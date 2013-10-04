@@ -5,6 +5,8 @@ Ticker::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+  get 'stocks' => 'stocks#ticker'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -39,7 +41,7 @@ Ticker::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
