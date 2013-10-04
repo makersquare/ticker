@@ -2,10 +2,8 @@ require 'rubygems'
 require 'sidekiq'
 require 'sidetiq'
 
-Sidekiq.options[:poll_interval] = 1
-
 before_fork do |server, worker|
-  @sidekiq_pid ||= spawn("bundle exec sidekiq -c 2")
+  @sidekiq_pid ||= spawn("bundle exec sidekiq")
 end
 
 worker_processes 3
@@ -16,5 +14,6 @@ after_fork do |server, worker|
   end
   Sidekiq.configure_server do |config|
     config.redis = { :size => 5 }
+    config.poll_interval = 1
   end
 end
